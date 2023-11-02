@@ -1,21 +1,21 @@
 // iterators2.rs
-//
 // In this exercise, you'll learn some of the unique advantages that iterators
 // can offer. Follow the steps to complete the exercise.
-//
-// Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a
-// hint.
+// Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 // Step 1.
 // Complete the `capitalize_first` function.
 // "hello" -> "Hello"
+// used method: to_uppercase() of char,  chars as_str()
+#[allow(unused)]
 pub fn capitalize_first(input: &str) -> String {
     let mut c = input.chars();
     match c.next() {
         None => String::new(),
-        Some(first) => ???,
+        Some(first) => {
+            format!("{}{}", first.to_uppercase(), c.as_str())
+        }
     }
 }
 
@@ -24,15 +24,23 @@ pub fn capitalize_first(input: &str) -> String {
 // Return a vector of strings.
 // ["hello", "world"] -> ["Hello", "World"]
 pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
-    vec![]
+    words.iter().map(|w| capitalize_first(w)).collect()
+
+    // for：
+    // let mut res_vec = vec![];
+    // for w in words {
+    //     res_vec.push(capitalize_first(w));
+    // }
+    // res_vec
 }
 
 // Step 3.
 // Apply the `capitalize_first` function again to a slice of string slices.
 // Return a single string.
 // ["hello", " ", "world"] -> "Hello World"
+// used method: join() of Vector
 pub fn capitalize_words_string(words: &[&str]) -> String {
-    String::new()
+    capitalize_words_vector(words).join("")
 }
 
 #[cfg(test)]
